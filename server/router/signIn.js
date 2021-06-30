@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
@@ -22,8 +23,19 @@ router.post('/', (req, res, next) => {
             }
             if(result) {
                 //token here
+                const token = jwt.sign({
+                    userId: user[0]._id,
+                    firstName: user[0].firstName,
+                    lastName: user[0].lastName,
+                    email: user[0].email,
+                  }, 
+                  'my_secret_key',
+                  {
+                    expiresIn: "1h"
+                  });
                 return res.status(200).json({
-                    message: 'Auth Successful'
+                    message: 'Auth Successful',
+                    token: token
                 });
             }
             res.status(401).json({

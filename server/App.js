@@ -6,8 +6,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const checkAuth = require('./middleware/check-auth');
 
-mongoose.connect('mongodb://127.0.0.1:27017/learnDemy', {
+mongoose.connect('mongodb://127.0.0.1/learnDemy', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -19,11 +20,14 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(mongoose);
+//app.use(mongoose);
 
+app.use('/api/videos', express.static('media/uploads'));
 
 //Routes
 app.use('/api/signUp', require('./router/signUp'));
 app.use('/api/signIn', require('./router/signIn'));
+app.use('/api/upload', checkAuth, require('./router/upload'));
+app.use('/api/videoList', checkAuth, require('./router/videoList'));
 
 module.exports = app;
