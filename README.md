@@ -10,7 +10,7 @@
 
 
 
-## Upload A Video
+## Déposer Une Video
 ![4](https://user-images.githubusercontent.com/68076350/124001696-cf55e200-d9cc-11eb-89e7-16f121c7c143.PNG)
 
 
@@ -22,5 +22,5 @@
 
 
 
-## Watch The Video
+## Consulter Une Video
 ![5](https://user-images.githubusercontent.com/68076350/124001698-cf55e200-d9cc-11eb-8caf-9fb924bd7e35.PNG)
